@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Marry Me?</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #ff3399;
+      font-size: 40px;
+      margin-top: 100px;
+    }
+    #yesBtn, #noBtn {
+      padding: 15px 30px;
+      font-size: 18px;
+      margin: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+    }
+
+    .balloon {
+      width: 40px;
+      height: 60px;
+      background-color: red;
+      border-radius: 50% 50% 50% 50%;
+      position: absolute;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% { bottom: -100px; }
+      100% { bottom: 100vh; }
+    }
+
+    .message {
+      font-size: 40px;
+      color: #ff3399;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="question">Will You Marry Me?</h1>
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn">No</button>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const question = document.getElementById("question");
+
+    noBtn.addEventListener("mouseover", () => {
+      const i = Math.floor(Math.random() * (window.innerWidth - 100));
+      const j = Math.floor(Math.random() * (window.innerHeight - 100));
+      noBtn.style.left = i + "px";
+      noBtn.style.top = j + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = "<h1 class='message'>Yayyy! Congratulations!</h1>";
+      launchBalloons();
+    });
+
+    function launchBalloons() {
+      for (let i = 0; i < 30; i++) {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.backgroundColor = getRandomColor();
+        balloon.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(balloon);
+      }
+    }
+
+    function getRandomColor() {
+      const colors = ["#ff6666", "#ffcc00", "#66ff66", "#66ccff", "#cc66ff"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+
+</body>
+</html>
